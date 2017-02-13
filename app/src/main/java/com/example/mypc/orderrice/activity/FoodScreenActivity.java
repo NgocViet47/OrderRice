@@ -26,7 +26,6 @@ public class FoodScreenActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_screen);
-
         initialView();
         addArrayList();
         buttonClick();
@@ -109,11 +108,9 @@ public class FoodScreenActivity extends AppCompatActivity implements View.OnClic
     private void buttonOrderClick() {
         Food food = mList.get(customListAdapter.positionAddFood);
         Intent intentOrder = new Intent(FoodScreenActivity.this,OrderScreenActivity.class);
-        customListAdapter.mlistPosition.add(0);
-        customListAdapter.mlistPosition.add(1);
         for(int a=0;a<mList.size();a++){
             for(int b=0;b<customListAdapter.mlistPosition.size();b++){
-                int c = (int) customListAdapter.mlistPosition.get(b);
+                int c = customListAdapter.mlistPosition.get(b);
                 if(a==c){
                     intentOrder.putExtra("idImage"+a,food.getIdImage());
                     intentOrder.putExtra("name"+a,food.getName());

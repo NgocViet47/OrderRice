@@ -29,7 +29,7 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
     private Button buttonSubtraction;
     private Button buttonMore;
     public int positionAddFood;
-    public List<Integer> mlistPosition=null;
+    public List<Integer> mlistPosition =  new ArrayList<>();
     public int i = 0;
 
     @Override
@@ -45,8 +45,8 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
     }
 
     @Override
-    public void onBindViewHolder (ViewHolder holder, final int position) {
-        Food itemsList = contactInfoList.get(position);
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        final Food itemsList = contactInfoList.get(position);
         holder.textViewNameFood.setText(itemsList.getName());
         holder.textViewQuatity.setText(String.valueOf(itemsList.getQuantity()));
         holder.textViewValue.setText(String.valueOf(itemsList.getValue()));
@@ -62,26 +62,30 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
         buttonMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Food items = contactInfoList.get(position);
-                int a = items.getQuantity() + 1;
-                items.setQuantity(a);
+                int a = itemsList.getQuantity() + 1;
+                itemsList.setQuantity(a);
                 positionAddFood = position;
-                //mlistPosition.add(position);
+                mlistPosition.add(position);
                 notifyDataSetChanged();
             }
         });
         buttonSubtraction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Food items = contactInfoList.get(position);
-                int a = items.getQuantity() - 1;
-                items.setQuantity(a);
+                int a = itemsList.getQuantity() - 1;
+                itemsList.setQuantity(a);
                 notifyDataSetChanged();
             }
         });
-        i += itemsList.getQuantity()*itemsList.getValue();
+        i += itemsList.getQuantity() * itemsList.getValue();
     }
 
+    public List<String> addList(){
+        List<String> a = new ArrayList<String>();
+        a.add("0");
+        a.add("1");
+        return  a;
+     }
     @Override
     public int getItemCount() {
         int count = (contactInfoList != null) ? contactInfoList.size() : 0;

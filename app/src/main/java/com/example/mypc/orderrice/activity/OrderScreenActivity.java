@@ -39,22 +39,55 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
         buttonClick();
         toast();
     }
-    protected void toast(){
+
+    protected void toast() {
         Bundle bundle = getIntent().getExtras();
         textViewResult.setText(String.valueOf(bundle.getInt("valueAll")));
         //Toast.makeText(this, String.valueOf(customListAdapter.value()), Toast.LENGTH_SHORT).show();
     }
+
     private void addArrayList() {
         mList = new ArrayList<>();
         mList.clear();
-        Bundle bundle = getIntent().getExtras();
-        intent = bundle.getInt("position");
-        for (int a=0;a<itemsListFoodAdapter.mlistPosition.size();a++){
-            int b= (int) itemsListFoodAdapter.mlistPosition.get(a);
-            mList.add(new Food(bundle.getInt("idImage"+b),bundle.getString("name"+b),bundle.getInt("quantity"+b),bundle.getInt("value"+b)));
-        }
+        Bundle bundle1 = getIntent().getExtras();
+        intent = bundle1.getInt("position");
+        if (itemsListFoodAdapter.mlistPosition.size() != 0) {
+            for (int a = 0; a < itemsListFoodAdapter.mlistPosition.size(); a++) {
+                int b = itemsListFoodAdapter.mlistPosition.get(a);
+                mList.add(new Food(bundle1.getInt("idImage" + b), bundle1.getString("name" + b), bundle1.getInt("quantity" + b), bundle1.getInt("value" + b)));
+            }
+        } else
+            switch (intent) {
+                case 0:
+                    mList.add(new Food(R.drawable.banhmi, "Bánh Mì", 0, 15000));
+                    mList.add(new Food(R.drawable.phobo, "Phở Bò", 0, 16000));
+                    mList.add(new Food(R.drawable.bunbohue, "Bún Bò Huế", 0, 20000));
+                    mList.add(new Food(R.drawable.xoi, "Xôi", 0, 10000));
+                    mList.add(new Food(R.drawable.mytom, "Mỳ Tôm", 0, 10000));
+                    setRecycleView();
+                    break;
+                case 1:
+                    mList.add(new Food(R.drawable.comga, "Cơm Gà", 0, 16000));
+                    mList.add(new Food(R.drawable.comthitbo, "Cơm Thịt Bò", 0, 20000));
+                    mList.add(new Food(R.drawable.comtamsuong, "Cơm Tấm Sường", 0, 30000));
+                    mList.add(new Food(R.drawable.comtrung, "Cơm Tấm Trứng", 0, 25000));
+                    setRecycleView();
+                    break;
+                case 2:
+                    mList.add(new Food(R.drawable.comga, "Cơm Gà", 0, 16000));
+                    mList.add(new Food(R.drawable.mixaobo, "Mì Xào Bò", 0, 20000));
+                    mList.add(new Food(R.drawable.nuixaobo, "Nui Xào Bò", 0, 20000));
+                    setRecycleView();
+                    break;
+                case 3:
+                    mList.add(new Food(R.drawable.cafe, "Cafe", 0, 10000));
+                    mList.add(new Food(R.drawable.nuocsuoi, "Nước Suối", 0, 10000));
+                    setRecycleView();
+                    break;
+            }
         setRecycleView();
-}
+    }
+
     public void setRecycleView() {
         customListAdapter = new ItemsOrderAdapter(mList, this);
         recyclerView.setAdapter(customListAdapter);
@@ -66,15 +99,15 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
-        textViewResult = (TextView)findViewById(R.id.textViewResult);
+        textViewResult = (TextView) findViewById(R.id.textViewResult);
 
-        buttonBack = (Button)findViewById(R.id.buttonOrderBack);
-        buttonResult = (Button)findViewById(R.id.buttonOrderResult);
+        buttonBack = (Button) findViewById(R.id.buttonOrderBack);
+        buttonResult = (Button) findViewById(R.id.buttonOrderResult);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.buttonOrderBack:
                 buttonBackClick();
                 break;
@@ -86,14 +119,15 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
 
     private void buttonResultClick() {
         Food food = mList.get(0);
-        textViewResult.setText(String.valueOf(food.getQuantity()*food.getValue()));
+        textViewResult.setText(String.valueOf(food.getQuantity() * food.getValue()));
     }
 
     private void buttonBackClick() {
-        Intent intentView = new Intent(OrderScreenActivity.this,FoodScreenActivity.class);
-        intentView.putExtra("position",intent);
+        Intent intentView = new Intent(OrderScreenActivity.this, FoodScreenActivity.class);
+        intentView.putExtra("position", intent);
         startActivity(intentView);
     }
+
     private void buttonClick() {
         buttonBack.setOnClickListener(this);
         buttonResult.setOnClickListener(this);
