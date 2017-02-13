@@ -15,6 +15,7 @@ import com.example.mypc.orderrice.model.Food;
 import com.example.mypc.orderrice.utils.BundleExtra;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
     private RecyclerView recyclerView;
     private ItemsOrderAdapter customListAdapter;
     private List<Food> mList;
-    private List<Food> mListOrder;
+    private List<Food> mListOrder = new ArrayList<>();
     private int intent;
     private Button buttonBack;
     private Button buttonResult;
@@ -49,18 +50,17 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
 
     private void addArrayList() {
         initialIntent();
-        /*for(int a=0;a<mList.size();a++){
+        for(int a=0;a<mList.size();a++){
             Food food = mList.get(a);
             if(mList.get(a).getQuantity()!=0){
-                mList.remove(a);
                 mListOrder.add(new Food(food.getIdImage(),food.getName(),food.getQuantity(),food.getValue()));
             }
-        }*/
+        }
         setRecycleView();
     }
 
     public void setRecycleView() {
-        customListAdapter = new ItemsOrderAdapter(mList, this);
+        customListAdapter = new ItemsOrderAdapter(mListOrder, this);
         recyclerView.setAdapter(customListAdapter);
     }
 
@@ -71,7 +71,6 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
         recyclerView.setHasFixedSize(true);
 
         textViewResult = (TextView) findViewById(R.id.textViewResult);
-
         buttonBack = (Button) findViewById(R.id.buttonOrderBack);
         buttonResult = (Button) findViewById(R.id.buttonOrderResult);
     }
