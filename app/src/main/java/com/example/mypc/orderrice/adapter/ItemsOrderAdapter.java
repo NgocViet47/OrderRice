@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -73,7 +74,10 @@ public class ItemsOrderAdapter extends RecyclerView.Adapter<ItemsOrderAdapter.Vi
                 notifyDataSetChanged();
             }
         });
-        i += itemsList.getQuantity()*itemsList.getValue();
+        if(contactInfoList.get(position).getCheckInt()>0){
+            holder.chkCheckInt.setChecked(true);
+        }
+        else holder.chkCheckInt.setChecked(false);
     }
 
     @Override
@@ -98,6 +102,7 @@ public class ItemsOrderAdapter extends RecyclerView.Adapter<ItemsOrderAdapter.Vi
         protected TextView textViewValue;
         protected ImageView imageViewItemsFood;
         protected TextView textViewQuatityMove;
+        protected CheckBox chkCheckInt;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -108,6 +113,7 @@ public class ItemsOrderAdapter extends RecyclerView.Adapter<ItemsOrderAdapter.Vi
             imageViewItemsFood = (ImageView) itemView.findViewById(R.id.imageViewItemsFood);
             buttonMore = (Button) itemView.findViewById(R.id.buttonMore);
             buttonSubtraction = (Button) itemView.findViewById(R.id.buttonSubtraction);
+            chkCheckInt = (CheckBox)itemView.findViewById(R.id.checkBoxCheckInt);
         }
     }
 }

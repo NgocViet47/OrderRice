@@ -24,6 +24,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
     private int intent;
     private Button buttonBack;
     private Button buttonOrder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,35 +42,36 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
         mList.clear();
         Bundle bundle = getIntent().getExtras();
         intent = bundle.getInt("position");
-        switch (intent){
+        switch (intent) {
             case 0:
-                mList.add(new Food(R.drawable.banhmi, "Bánh Mì", 0,15000));
-                mList.add(new Food(R.drawable.phobo, "Phở Bò", 0,16000));
-                mList.add(new Food(R.drawable.bunbohue, "Bún Bò Huế", 0,20000));
-                mList.add(new Food(R.drawable.xoi, "Xôi", 0,10000));
-                mList.add(new Food(R.drawable.mytom, "Mỳ Tôm", 0,10000));
+                mList.add(new Food(R.drawable.banhmi, "Bánh Mì", 0, 15000, 0));
+                mList.add(new Food(R.drawable.phobo, "Phở Bò", 0, 16000, 0));
+                mList.add(new Food(R.drawable.bunbohue, "Bún Bò Huế", 0, 20000, 0));
+                mList.add(new Food(R.drawable.xoi, "Xôi", 0, 10000, 0));
+                mList.add(new Food(R.drawable.mytom, "Mỳ Tôm", 0, 10000, 0));
                 setRecycleView();
                 break;
             case 1:
-                mList.add(new Food(R.drawable.comga, "Cơm Gà", 0,16000));
-                mList.add(new Food(R.drawable.comthitbo, "Cơm Thịt Bò", 0,20000));
-                mList.add(new Food(R.drawable.comtamsuong, "Cơm Tấm Sường", 0,30000));
-                mList.add(new Food(R.drawable.comtrung, "Cơm Tấm Trứng", 0,25000));
+                mList.add(new Food(R.drawable.comga, "Cơm Gà", 0, 16000, 0));
+                mList.add(new Food(R.drawable.comthitbo, "Cơm Thịt Bò", 0, 20000, 0));
+                mList.add(new Food(R.drawable.comtamsuong, "Cơm Tấm Sường", 0, 30000, 0));
+                mList.add(new Food(R.drawable.comtrung, "Cơm Tấm Trứng", 0, 25000, 0));
                 setRecycleView();
                 break;
             case 2:
-                mList.add(new Food(R.drawable.comga, "Cơm Gà", 0,16000));
-                mList.add(new Food(R.drawable.mixaobo, "Mì Xào Bò", 0,20000));
-                mList.add(new Food(R.drawable.nuixaobo, "Nui Xào Bò", 0,20000));
+                mList.add(new Food(R.drawable.comga, "Cơm Gà", 0, 16000, 0));
+                mList.add(new Food(R.drawable.mixaobo, "Mì Xào Bò", 0, 20000, 0));
+                mList.add(new Food(R.drawable.nuixaobo, "Nui Xào Bò", 0, 20000, 0));
                 setRecycleView();
                 break;
             case 3:
-                mList.add(new Food(R.drawable.cafe, "Cafe", 0,10000));
-                mList.add(new Food(R.drawable.nuocsuoi, "Nước Suối", 0,10000));
+                mList.add(new Food(R.drawable.cafe, "Cafe", 0, 10000, 0));
+                mList.add(new Food(R.drawable.nuocsuoi, "Nước Suối", 0, 10000, 0));
                 setRecycleView();
                 break;
         }
     }
+
     public void setRecycleView() {
         customListAdapter = new ItemsListFoodAdapter(mList, this);
         recyclerView.setAdapter(customListAdapter);
@@ -81,13 +83,13 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
-        buttonBack = (Button)findViewById(R.id.buttonBack);
-        buttonOrder = (Button)findViewById(R.id.buttonOrder);
+        buttonBack = (Button) findViewById(R.id.buttonBack);
+        buttonOrder = (Button) findViewById(R.id.buttonOrder);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.buttonBack:
                 buttonBackClick();
                 break;
@@ -97,25 +99,15 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public Integer value(){
-        int value = 0;
-        Food itemsList;
-        for (int a = 0; a < mList.size(); a++) {
-            itemsList = mList.get(a);
-            value += (itemsList.getQuantity() * itemsList.getValue());
-        }
-        return value;
-    }
-
     private void buttonOrderClick() {
         String lstFoodJson = new Gson().toJson(mList);
-        Intent intentOrder = new Intent(FoodActivity.this,OrderActivity.class);
-        intentOrder.putExtra(BundleExtra.FOOD_DATA,lstFoodJson);
+        Intent intentOrder = new Intent(FoodActivity.this, OrderActivity.class);
+        intentOrder.putExtra(BundleExtra.FOOD_DATA, lstFoodJson);
         startActivity(intentOrder);
     }
 
     private void buttonBackClick() {
-        Intent intentHome = new Intent(FoodActivity.this,HomeActivity.class);
+        Intent intentHome = new Intent(FoodActivity.this, HomeActivity.class);
         startActivity(intentHome);
     }
 

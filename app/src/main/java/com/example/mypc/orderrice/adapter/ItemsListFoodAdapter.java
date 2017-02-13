@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,6 +56,18 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
                 .noFade()
                 .tag(mContext)
                 .into(holder.imageViewItemsFood);
+        holder.checkBoxCheckInt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                contactInfoList.get(position).setCheckInt(1);
+            }
+        });
+        holder.checkBoxCheckInt.setChecked(true);
+        if(contactInfoList.get(position).getCheckInt()>0){
+            holder.checkBoxCheckInt.setChecked(true);
+        }
+        else holder.checkBoxCheckInt.setChecked(false);
+
         holder.buttonMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +87,7 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
             }
         });
 
+
     }
 
     @Override
@@ -91,6 +105,7 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
         protected TextView textViewQuatityMove;
         protected Button buttonSubtraction;
         protected Button buttonMore;
+        protected CheckBox checkBoxCheckInt;
         public ViewHolder(View itemView) {
             super(itemView);
             textViewNameFood = (TextView) itemView.findViewById(R.id.textViewNameFood);
@@ -100,6 +115,7 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
             imageViewItemsFood = (ImageView) itemView.findViewById(R.id.imageViewItemsFood);
             buttonMore = (Button) itemView.findViewById(R.id.buttonMore);
             buttonSubtraction = (Button) itemView.findViewById(R.id.buttonSubtraction);
+            checkBoxCheckInt = (CheckBox) itemView.findViewById(R.id.checkBoxCheckInt);
         }
     }
 }

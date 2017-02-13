@@ -9,16 +9,27 @@ public class Food {
     private String name;
     private int quantity;
     private int value;
+    private int checkInt;
 
-    public Food(int idImage, String name, int quantity, int value) {
+    public Food(int idImage, String name, int quantity, int value, int checkInt) {
         this.idImage = idImage;
         this.name = name;
         this.quantity = quantity;
         this.value = value;
+        this.checkInt = checkInt;
     }
 
     public Food() {
     }
+
+    public int getCheckInt() {
+        return checkInt;
+    }
+
+    public void setCheckInt(int checkInt) {
+        this.checkInt = checkInt;
+    }
+
 
     public int getIdImage() {
         return idImage;
@@ -42,9 +53,7 @@ public class Food {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-        if(this.quantity>15){
-            this.quantity = 15;
-        }
+
     }
 
     public int getValue() {

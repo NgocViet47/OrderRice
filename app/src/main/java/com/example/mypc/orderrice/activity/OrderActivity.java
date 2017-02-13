@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.mypc.orderrice.R;
@@ -34,7 +35,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
-
         initialView();
         addArrayList();
         buttonClick();
@@ -53,10 +53,18 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         for (int a = 0; a < mList.size(); a++) {
             Food food = mList.get(a);
             if (mList.get(a).getQuantity() != 0) {
-                mListOrder.add(new Food(food.getIdImage(), food.getName(), food.getQuantity(), food.getValue()));
+                mListOrder.add(new Food(food.getIdImage(), food.getName(), food.getQuantity(), food.getValue(), food.getCheckInt()));
             }
         }
+        sumTotal();
         setRecycleView();
+    }
+    private void sumTotal(){
+        int sumTotal = 0;
+        for (int a = 0; a < mListOrder.size(); a++) {
+            sumTotal += mListOrder.get(a).getQuantity() * mListOrder.get(a).getValue();
+            textViewResult.setText(String.valueOf(sumTotal));
+        }
     }
 
     public void setRecycleView() {
@@ -73,6 +81,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         textViewResult = (TextView) findViewById(R.id.textViewResult);
         buttonBack = (Button) findViewById(R.id.buttonOrderBack);
         buttonResult = (Button) findViewById(R.id.buttonOrderResult);
+
     }
 
     @Override
@@ -88,11 +97,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void buttonResultClick() {
-        int sumTotal = 0;
-        for (int a = 0; a < mListOrder.size(); a++) {
-            sumTotal += mListOrder.get(a).getQuantity() * mListOrder.get(a).getValue();
-            textViewResult.setText(String.valueOf(sumTotal));
-        }
+        sumTotal();
     }
 
     private void buttonBackClick() {
