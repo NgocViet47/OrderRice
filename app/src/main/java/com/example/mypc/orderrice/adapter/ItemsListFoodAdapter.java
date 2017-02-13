@@ -65,7 +65,7 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
                 Food items = contactInfoList.get(position);
                 int a = items.getQuantity() + 1;
                 positionAddFood = position;
-                mlistPosition.add(position);
+                //mlistPosition.add(position);
                 items.setQuantity(a);
                 notifyDataSetChanged();
             }
