@@ -4,7 +4,7 @@
     android:id="@+id/activity_order_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mypc.orderrice.activity.OrderScreenActivity"
+    tools:context="com.example.mypc.orderrice.activity.OrderActivity"
     android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView

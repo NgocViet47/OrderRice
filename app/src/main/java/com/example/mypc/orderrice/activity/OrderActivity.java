@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class OrderScreenActivity extends AppCompatActivity implements View.OnClickListener {
+public class OrderActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView textViewResult;
     private RecyclerView recyclerView;
     private ItemsOrderAdapter customListAdapter;
@@ -32,7 +32,7 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_screen);
+        setContentView(R.layout.activity_order);
 
 
         initialView();
@@ -40,20 +40,20 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
         buttonClick();
     }
 
-    private void initialIntent(){
-        if(getIntent().getExtras()!=null){
-            String lstFoodJson = getIntent().getExtras().getString(BundleExtra.FOOD_DATA,"");
-            Food foods [] = new Gson().fromJson(lstFoodJson,Food[].class);
+    private void initialIntent() {
+        if (getIntent().getExtras() != null) {
+            String lstFoodJson = getIntent().getExtras().getString(BundleExtra.FOOD_DATA, "");
+            Food foods[] = new Gson().fromJson(lstFoodJson, Food[].class);
             mList = Arrays.asList(foods);
         }
     }
 
     private void addArrayList() {
         initialIntent();
-        for(int a=0;a<mList.size();a++){
+        for (int a = 0; a < mList.size(); a++) {
             Food food = mList.get(a);
-            if(mList.get(a).getQuantity()!=0){
-                mListOrder.add(new Food(food.getIdImage(),food.getName(),food.getQuantity(),food.getValue()));
+            if (mList.get(a).getQuantity() != 0) {
+                mListOrder.add(new Food(food.getIdImage(), food.getName(), food.getQuantity(), food.getValue()));
             }
         }
         setRecycleView();
@@ -88,12 +88,15 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void buttonResultClick() {
-        Food food = mList.get(0);
-        textViewResult.setText(String.valueOf(food.getQuantity() * food.getValue()));
+        int sumTotal = 0;
+        for (int a = 0; a < mListOrder.size(); a++) {
+            sumTotal += mListOrder.get(a).getQuantity() * mListOrder.get(a).getValue();
+            textViewResult.setText(String.valueOf(sumTotal));
+        }
     }
 
     private void buttonBackClick() {
-        Intent intentView = new Intent(OrderScreenActivity.this, FoodScreenActivity.class);
+        Intent intentView = new Intent(OrderActivity.this, FoodActivity.class);
         intentView.putExtra("position", intent);
         startActivity(intentView);
     }

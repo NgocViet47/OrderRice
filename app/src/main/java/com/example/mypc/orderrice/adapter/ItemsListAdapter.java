@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mypc.orderrice.R;
-import com.example.mypc.orderrice.activity.FoodScreenActivity;
+import com.example.mypc.orderrice.activity.FoodActivity;
 import com.example.mypc.orderrice.model.ItemsList;
 import com.squareup.picasso.Picasso;
 
@@ -72,7 +72,7 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.View
         @Override
         public void onClick(View v) {
             ItemsList itemsList = contactInfoList.get(getAdapterPosition());
-            Intent intent = new Intent(mContext, FoodScreenActivity.class);
+            Intent intent = new Intent(mContext, FoodActivity.class);
             intent.putExtra("position",getAdapterPosition());
             mContext.startActivity(intent);
             Toast.makeText(mContext,itemsList.getFood(),Toast.LENGTH_SHORT).show();

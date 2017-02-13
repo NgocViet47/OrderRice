@@ -42,6 +42,9 @@ public class Food {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+        if(this.quantity>15){
+            this.quantity = 15;
+        }
     }
 
     public int getValue() {

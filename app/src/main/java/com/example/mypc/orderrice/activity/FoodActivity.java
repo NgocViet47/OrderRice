@@ -17,7 +17,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodScreenActivity extends AppCompatActivity implements View.OnClickListener {
+public class FoodActivity extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView recyclerView;
     private ItemsListFoodAdapter customListAdapter;
     private List<Food> mList;
@@ -27,13 +27,13 @@ public class FoodScreenActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_screen);
+        setContentView(R.layout.activity_food);
         initialView();
         addArrayList();
         buttonClick();
     }
 
-    public FoodScreenActivity() {
+    public FoodActivity() {
     }
 
     private void addArrayList() {
@@ -109,13 +109,13 @@ public class FoodScreenActivity extends AppCompatActivity implements View.OnClic
 
     private void buttonOrderClick() {
         String lstFoodJson = new Gson().toJson(mList);
-        Intent intentOrder = new Intent(FoodScreenActivity.this,OrderScreenActivity.class);
+        Intent intentOrder = new Intent(FoodActivity.this,OrderActivity.class);
         intentOrder.putExtra(BundleExtra.FOOD_DATA,lstFoodJson);
         startActivity(intentOrder);
     }
 
     private void buttonBackClick() {
-        Intent intentHome = new Intent(FoodScreenActivity.this,HomeScreenActivity.class);
+        Intent intentHome = new Intent(FoodActivity.this,HomeActivity.class);
         startActivity(intentHome);
     }
 

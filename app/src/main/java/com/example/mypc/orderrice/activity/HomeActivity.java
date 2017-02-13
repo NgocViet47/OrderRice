@@ -4,8 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.View;
-import android.widget.Toast;
 
 import com.example.mypc.orderrice.R;
 import com.example.mypc.orderrice.adapter.ItemsListAdapter;
@@ -14,7 +12,7 @@ import com.example.mypc.orderrice.model.ItemsList;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeScreenActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ItemsListAdapter customListAdapter;
@@ -23,7 +21,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_screen);
+        setContentView(R.layout.activity_home);
 
         initialView();
         addArrayList();
