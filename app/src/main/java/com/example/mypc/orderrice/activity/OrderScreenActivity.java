@@ -14,6 +14,8 @@ import com.example.mypc.orderrice.R;
 import com.example.mypc.orderrice.adapter.ItemsListFoodAdapter;
 import com.example.mypc.orderrice.adapter.ItemsOrderAdapter;
 import com.example.mypc.orderrice.model.Food;
+import com.example.mypc.orderrice.utils.BundleExtra;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,10 +42,20 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
         toast();
     }
 
+    private void initialIntent(){
+        if(getIntent().getExtras()!=null){
+            String lstFoodJson = getIntent().getExtras().getString(BundleExtra.FOOD_DATA,"");
+            Food foods [] = new Gson().fromJson(lstFoodJson,Food[].class);
+
+
+
+        }
+    }
+
     protected void toast() {
         Bundle bundle = getIntent().getExtras();
         textViewResult.setText(String.valueOf(bundle.getInt("valueAll")));
-        Toast.makeText(this, String.valueOf(itemsListFoodAdapter.mlistPosition.get(0)), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, String.valueOf(itemsListFoodAdapter.mlistPosition.get(0)), Toast.LENGTH_SHORT).show();
     }
 
     private void addArrayList() {
@@ -51,7 +63,7 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
         mList.clear();
         Bundle bundle1 = getIntent().getExtras();
         intent = bundle1.getInt("position");
-        /*if (itemsListFoodAdapter.mlistPosition.size()>=0) {
+       /* if (itemsListFoodAdapter.mlistPosition.size()>=0) {
             for (int a = 0; a < itemsListFoodAdapter.mlistPosition.size(); a++) {
                 int b = itemsListFoodAdapter.mlistPosition.get(a);
                 mList.add(new Food(bundle1.getInt("idImage" + b), bundle1.getString("name" + b), bundle1.getInt("quantity" + b), bundle1.getInt("value" + b)));

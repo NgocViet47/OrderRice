@@ -11,6 +11,8 @@ import android.widget.Button;
 import com.example.mypc.orderrice.R;
 import com.example.mypc.orderrice.adapter.ItemsListFoodAdapter;
 import com.example.mypc.orderrice.model.Food;
+import com.example.mypc.orderrice.utils.BundleExtra;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,7 +108,7 @@ public class FoodScreenActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void buttonOrderClick() {
-        Food food = mList.get(customListAdapter.positionAddFood);
+      /*  Food food = mList.get(customListAdapter.positionAddFood);
         Intent intentOrder = new Intent(FoodScreenActivity.this,OrderScreenActivity.class);
         for(int a=0;a<mList.size();a++){
             for(int b=0;b<customListAdapter.mlistPosition.size();b++){
@@ -121,6 +123,11 @@ public class FoodScreenActivity extends AppCompatActivity implements View.OnClic
         }
         intentOrder.putExtra("valueAll",value());
         intentOrder.putExtra("position",intent);
+        startActivity(intentOrder);*/
+
+        String lstFoodJson = new Gson().toJson(mList);
+        Intent intentOrder = new Intent(FoodScreenActivity.this,OrderScreenActivity.class);
+        intentOrder.putExtra(BundleExtra.FOOD_DATA,lstFoodJson);
         startActivity(intentOrder);
     }
 

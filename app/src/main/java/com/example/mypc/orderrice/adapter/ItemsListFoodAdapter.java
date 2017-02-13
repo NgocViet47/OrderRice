@@ -26,11 +26,7 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
     private Context mContext;
     private LayoutInflater mLayoutInflater;
     private View itemView;
-    private Button buttonSubtraction;
-    private Button buttonMore;
-    public int positionAddFood;
-    public List<Integer> mlistPosition =  new ArrayList<>();
-    public int i = 0;
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -59,46 +55,33 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
                 .noFade()
                 .tag(mContext)
                 .into(holder.imageViewItemsFood);
-        buttonMore.setOnClickListener(new View.OnClickListener() {
+        holder.buttonMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int a = itemsList.getQuantity() + 1;
-                itemsList.setQuantity(a);
-                positionAddFood = position;
-                mlistPosition.add(position);
+                int quantity =  contactInfoList.get(position).getQuantity() + 1;
+                itemsList.setQuantity(quantity);
                 notifyDataSetChanged();
             }
         });
-        buttonSubtraction.setOnClickListener(new View.OnClickListener() {
+        holder.buttonSubtraction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int a = itemsList.getQuantity() - 1;
-                itemsList.setQuantity(a);
-                notifyDataSetChanged();
+                if( contactInfoList.get(position).getQuantity() >0) {
+                    int quantity = contactInfoList.get(position).getQuantity() - 1;
+                    itemsList.setQuantity(quantity);
+                    notifyDataSetChanged();
+                }
             }
         });
-        i += itemsList.getQuantity() * itemsList.getValue();
+
     }
 
-    public List<Integer> addList(int b){
-        List<Integer> a = new ArrayList<>();
-        a.add(b);
-        return  a;
-     }
     @Override
     public int getItemCount() {
         int count = (contactInfoList != null) ? contactInfoList.size() : 0;
         return count;
     }
 
-    public Integer value() {
-        /*int value = 0;
-        for (int a = 0; a <= contactInfoList.size(); a++) {
-            Food itemsList = contactInfoList.get(a);
-            value += (itemsList.getQuantity() * itemsList.getValue());
-        }*/
-        return i;
-    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         protected TextView textViewNameFood;
@@ -106,7 +89,8 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
         protected TextView textViewValue;
         protected ImageView imageViewItemsFood;
         protected TextView textViewQuatityMove;
-
+        protected Button buttonSubtraction;
+        protected Button buttonMore;
         public ViewHolder(View itemView) {
             super(itemView);
             textViewNameFood = (TextView) itemView.findViewById(R.id.textViewNameFood);
