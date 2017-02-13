@@ -14,6 +14,7 @@ import com.example.mypc.orderrice.R;
 import com.example.mypc.orderrice.model.Food;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +29,7 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
     private Button buttonSubtraction;
     private Button buttonMore;
     public int positionAddFood;
+    public List<Integer> mlistPosition;
     public int i = 0;
 
     @Override
@@ -63,6 +65,7 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
                 Food items = contactInfoList.get(position);
                 int a = items.getQuantity() + 1;
                 positionAddFood = position;
+                mlistPosition.add(position);
                 items.setQuantity(a);
                 notifyDataSetChanged();
             }

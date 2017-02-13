@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mypc.orderrice.R;
+import com.example.mypc.orderrice.adapter.ItemsListFoodAdapter;
 import com.example.mypc.orderrice.adapter.ItemsOrderAdapter;
 import com.example.mypc.orderrice.model.Food;
 
@@ -21,6 +22,7 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
     private TextView textViewResult;
     private RecyclerView recyclerView;
     private ItemsOrderAdapter customListAdapter;
+    private ItemsListFoodAdapter itemsListFoodAdapter;
     private List<Food> mList;
     private int intent;
     private Button buttonBack;
@@ -47,7 +49,10 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
         mList.clear();
         Bundle bundle = getIntent().getExtras();
         intent = bundle.getInt("position");
-        mList.add(new Food(bundle.getInt("idImage"),bundle.getString("name"),bundle.getInt("quantity"),bundle.getInt("value")));
+        for (int a=0;a<itemsListFoodAdapter.mlistPosition.size();a++){
+            int b= (int) itemsListFoodAdapter.mlistPosition.get(a);
+            mList.add(new Food(bundle.getInt("idImage"+b),bundle.getString("name"+b),bundle.getInt("quantity"+b),bundle.getInt("value"+b)));
+        }
         setRecycleView();
 }
     public void setRecycleView() {

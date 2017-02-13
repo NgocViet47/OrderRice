@@ -109,12 +109,19 @@ public class FoodScreenActivity extends AppCompatActivity implements View.OnClic
     private void buttonOrderClick() {
         Food food = mList.get(customListAdapter.positionAddFood);
         Intent intentOrder = new Intent(FoodScreenActivity.this,OrderScreenActivity.class);
+        for(int a=0;a<mList.size();a++){
+            for(int b=0;b<customListAdapter.mlistPosition.size();b++){
+                int c = (int) customListAdapter.mlistPosition.get(b);
+                if(a==c){
+                    intentOrder.putExtra("idImage"+a,food.getIdImage());
+                    intentOrder.putExtra("name"+a,food.getName());
+                    intentOrder.putExtra("quantity"+a,food.getQuantity());
+                    intentOrder.putExtra("value"+a,food.getValue());
+                }
+            }
+        }
         intentOrder.putExtra("valueAll",value());
         intentOrder.putExtra("position",intent);
-        intentOrder.putExtra("idImage",food.getIdImage());
-        intentOrder.putExtra("name",food.getName());
-        intentOrder.putExtra("quantity",food.getQuantity());
-        intentOrder.putExtra("value",food.getValue());
         startActivity(intentOrder);
     }
 
