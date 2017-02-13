@@ -29,7 +29,7 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
     private Button buttonSubtraction;
     private Button buttonMore;
     public int positionAddFood;
-    public List<Integer> mlistPosition;
+    public List<Integer> mlistPosition=null;
     public int i = 0;
 
     @Override
@@ -66,7 +66,7 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
                 int a = items.getQuantity() + 1;
                 items.setQuantity(a);
                 positionAddFood = position;
-                mlistPosition.add(position);
+                //mlistPosition.add(position);
                 notifyDataSetChanged();
             }
         });

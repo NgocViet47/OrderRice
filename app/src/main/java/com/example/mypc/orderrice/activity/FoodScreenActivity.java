@@ -109,6 +109,8 @@ public class FoodScreenActivity extends AppCompatActivity implements View.OnClic
     private void buttonOrderClick() {
         Food food = mList.get(customListAdapter.positionAddFood);
         Intent intentOrder = new Intent(FoodScreenActivity.this,OrderScreenActivity.class);
+        customListAdapter.mlistPosition.add(0);
+        customListAdapter.mlistPosition.add(1);
         for(int a=0;a<mList.size();a++){
             for(int b=0;b<customListAdapter.mlistPosition.size();b++){
                 int c = (int) customListAdapter.mlistPosition.get(b);
