@@ -49,10 +49,11 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
         mList.clear();
         Bundle bundle = getIntent().getExtras();
         intent = bundle.getInt("position");
-        for (int a=0;a<itemsListFoodAdapter.mlistPosition.size();a++){
+        /*for (int a=0;a<itemsListFoodAdapter.mlistPosition.size();a++){
             int b= (int) itemsListFoodAdapter.mlistPosition.get(a);
             mList.add(new Food(bundle.getInt("idImage"+b),bundle.getString("name"+b),bundle.getInt("quantity"+b),bundle.getInt("value"+b)));
-        }
+        }*/
+        mList.add(new Food(bundle.getInt("idImage"),bundle.getString("name"),bundle.getInt("quantity"),bundle.getInt("value")));
         setRecycleView();
 }
     public void setRecycleView() {
