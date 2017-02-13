@@ -49,6 +49,13 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
 
     private void addArrayList() {
         initialIntent();
+        /*for(int a=0;a<mList.size();a++){
+            Food food = mList.get(a);
+            if(mList.get(a).getQuantity()!=0){
+                mList.remove(a);
+                mListOrder.add(new Food(food.getIdImage(),food.getName(),food.getQuantity(),food.getValue()));
+            }
+        }*/
         setRecycleView();
     }
 
