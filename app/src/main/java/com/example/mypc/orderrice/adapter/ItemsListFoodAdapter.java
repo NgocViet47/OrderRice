@@ -80,10 +80,9 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
         i += itemsList.getQuantity() * itemsList.getValue();
     }
 
-    public List<String> addList(){
-        List<String> a = new ArrayList<String>();
-        a.add("0");
-        a.add("1");
+    public List<Integer> addList(int b){
+        List<Integer> a = new ArrayList<>();
+        a.add(b);
         return  a;
      }
     @Override

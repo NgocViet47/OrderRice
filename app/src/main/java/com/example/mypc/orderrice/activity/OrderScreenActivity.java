@@ -43,7 +43,7 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
     protected void toast() {
         Bundle bundle = getIntent().getExtras();
         textViewResult.setText(String.valueOf(bundle.getInt("valueAll")));
-        //Toast.makeText(this, String.valueOf(customListAdapter.value()), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, String.valueOf(itemsListFoodAdapter.mlistPosition.get(0)), Toast.LENGTH_SHORT).show();
     }
 
     private void addArrayList() {
@@ -51,12 +51,12 @@ public class OrderScreenActivity extends AppCompatActivity implements View.OnCli
         mList.clear();
         Bundle bundle1 = getIntent().getExtras();
         intent = bundle1.getInt("position");
-        if (itemsListFoodAdapter.mlistPosition.size() != 0) {
+        /*if (itemsListFoodAdapter.mlistPosition.size()>=0) {
             for (int a = 0; a < itemsListFoodAdapter.mlistPosition.size(); a++) {
                 int b = itemsListFoodAdapter.mlistPosition.get(a);
                 mList.add(new Food(bundle1.getInt("idImage" + b), bundle1.getString("name" + b), bundle1.getInt("quantity" + b), bundle1.getInt("value" + b)));
             }
-        } else
+        } else*/
             switch (intent) {
                 case 0:
                     mList.add(new Food(R.drawable.banhmi, "Bánh Mì", 0, 15000));
