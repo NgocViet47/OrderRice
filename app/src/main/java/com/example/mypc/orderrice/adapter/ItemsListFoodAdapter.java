@@ -45,7 +45,7 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder (ViewHolder holder, final int position) {
         Food itemsList = contactInfoList.get(position);
         holder.textViewNameFood.setText(itemsList.getName());
         holder.textViewQuatity.setText(String.valueOf(itemsList.getQuantity()));
@@ -64,9 +64,9 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
             public void onClick(View v) {
                 Food items = contactInfoList.get(position);
                 int a = items.getQuantity() + 1;
-                positionAddFood = position;
-                //mlistPosition.add(position);
                 items.setQuantity(a);
+                positionAddFood = position;
+                mlistPosition.add(position);
                 notifyDataSetChanged();
             }
         });
