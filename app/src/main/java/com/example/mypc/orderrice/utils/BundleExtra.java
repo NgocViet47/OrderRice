@@ -6,5 +6,6 @@ package com.example.mypc.orderrice.utils;
 
 public class BundleExtra {
 
-    public final  static String FOOD_DATA = "data";
+    public final  static String FOOD_DATA = "datafood";
+    public final  static String BRUNCH_DATA = "databrunch";
 }

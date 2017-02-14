@@ -47,7 +47,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
         mList = new ArrayList<>();
         mList.clear();
         Bundle bundle = getIntent().getExtras();
-        intent = bundle.getInt("position");
+        intent = bundle.getInt(BundleExtra.BRUNCH_DATA);
         for (int a=0;a<db.getAllFood().size();a++) {
             Food food = db.getAllFood().get(a);
             if(food.getIdBrunchName()==intent){

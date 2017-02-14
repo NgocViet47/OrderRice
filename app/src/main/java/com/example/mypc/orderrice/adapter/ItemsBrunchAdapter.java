@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.mypc.orderrice.R;
 import com.example.mypc.orderrice.activity.FoodActivity;
 import com.example.mypc.orderrice.model.Brunch;
+import com.example.mypc.orderrice.utils.BundleExtra;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -73,7 +74,7 @@ public class ItemsBrunchAdapter extends RecyclerView.Adapter<ItemsBrunchAdapter.
         public void onClick(View v) {
             Brunch itemsList = contactInfoList.get(getAdapterPosition());
             Intent intent = new Intent(mContext, FoodActivity.class);
-            intent.putExtra("position",getAdapterPosition());
+            intent.putExtra(BundleExtra.BRUNCH_DATA,getAdapterPosition());
             mContext.startActivity(intent);
             Toast.makeText(mContext,itemsList.getFood(),Toast.LENGTH_SHORT).show();
         }
