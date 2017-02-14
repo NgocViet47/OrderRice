@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.mypc.orderrice.model.Brunch;
 import com.example.mypc.orderrice.model.Food;
 
 import java.util.ArrayList;
@@ -17,13 +18,14 @@ import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "db_food";
+    private static final String DATABASE_NAME = "db_foode";
     public static final String TABLE_NAME = "food";
+    public static final String TABLE_NAMEBRUNCH = "brunch";
     public static final String KEY_ID = "id";
     public static final String KEY_IDIMAGE = "idimage";
     public static final String KEY_NAME = "name";
-    public static final String KEY_IDBRUNCH = "idbruch";
-    public static final String KEY_QUANTITY = "qauntity";
+    public static final String KEY_IDBRUNCH = "idbrunch";
+    public static final String KEY_QUANTITY = "quantity";
     public static final String KEY_VALUE = "value";
     public static final String KEY_CHECKINT = "checkint";
 
@@ -33,20 +35,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE" + TABLE_NAME + "("
-                + KEY_ID + "INTERGER PRIMARY KEY AUTOINCREMENT,"
-                + KEY_IDIMAGE + "INTERGER,"
-                + KEY_NAME + "TEXT,"
-                + KEY_IDBRUNCH + "INTERGER ,"
-                + KEY_QUANTITY + "INTERGER,"
-                + KEY_VALUE + "INTERGER,"
-                + KEY_CHECKINT + "INTERGER,";
+        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
+                + KEY_ID + " INTEGER  PRIMARY KEY AUTOINCREMENT,"
+                + KEY_IDIMAGE + " INTEGER ,"
+                + KEY_NAME + " TEXT,"
+                + KEY_IDBRUNCH + " INTEGER ,"
+                + KEY_QUANTITY + " INTEGER ,"
+                + KEY_VALUE + " INTEGER ,"
+                + KEY_CHECKINT + " INTEGER )";
         db.execSQL(CREATE_CONTACTS_TABLE);
+        String CREATE_CONTACTS_TABLE_BRUNCH = "CREATE TABLE " + TABLE_NAMEBRUNCH + " ("
+                + KEY_NAME + " TEXT,"
+                + KEY_ID + " INTEGER  PRIMARY KEY AUTOINCREMENT,"
+                + KEY_IDIMAGE + " INTEGER )";
+        db.execSQL(CREATE_CONTACTS_TABLE_BRUNCH);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXITS" + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXITS " + TABLE_NAME);
+        onCreate(db);
+        db.execSQL("DROP TABLE IF EXITS " + TABLE_NAMEBRUNCH);
         onCreate(db);
     }
 
@@ -62,6 +71,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_CHECKINT, food.getCheckInt());
         //inset 1 dong
         db.insert(TABLE_NAME, null, values);
+        db.close();
+    }
+    public void addBrunch(Brunch brunch) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, brunch.getFood());
+        values.put(KEY_ID, brunch.getIdBrunch());
+        values.put(KEY_IDIMAGE, brunch.getIdImageItems());
+        //inset 1 dong
+        db.insert(TABLE_NAMEBRUNCH, null, values);
         db.close();
     }
 
@@ -108,4 +128,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return contactList;
     }
+    public List<Brunch> getAllBrunch() {
+        List<Brunch> contactList = new ArrayList<Brunch>();
+        String selectQuery = "SELECT  * FROM " + TABLE_NAMEBRUNCH;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Brunch brunch = new Brunch();
+                brunch.setFood(cursor.getString(0));
+                brunch.setIdBrunch(cursor.getInt(1));
+                brunch.setIdImageItems(cursor.getInt(2));
+                contactList.add(brunch);
+            } while (cursor.moveToNext());
+        }
+        return contactList;
+    }
+
+
 }

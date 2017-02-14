@@ -57,7 +57,9 @@ public class ItemsFoodAdapter extends RecyclerView.Adapter<ItemsFoodAdapter.View
         holder.checkBoxCheckInt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                contactInfoList.get(position).setCheckInt(1);
+                if(contactInfoList.get(position).getCheckInt()==1){
+                    contactInfoList.get(position).setCheckInt(0);
+                }else contactInfoList.get(position).setCheckInt(1);
             }
         });
         holder.checkBoxCheckInt.setChecked(true);

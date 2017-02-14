@@ -16,12 +16,15 @@ import com.example.mypc.orderrice.utils.BundleExtra;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class FoodActivity extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView recyclerView;
     private ItemsFoodAdapter customListAdapter;
     private List<Food> mList;
+    private Set<Food> mListNew;
     private int intent;
     private Button buttonBack;
     private Button buttonOrder;
@@ -40,33 +43,21 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addArrayList() {
+        DatabaseHandler db = new DatabaseHandler(this);
         mList = new ArrayList<>();
         mList.clear();
         Bundle bundle = getIntent().getExtras();
         intent = bundle.getInt("position");
-
+        for (int a=0;a<db.getAllFood().size();a++) {
+            Food food = db.getAllFood().get(a);
+            if(food.getIdBrunchName()==intent){
+                mList.add(food);
+            }
+        }
+        setRecycleView();
     }
 
     private void addDatabaseFood() {
-        DatabaseHandler db = new DatabaseHandler(this);
-
-        db.addFood(new Food(R.drawable.banhmi, "Bánh Mì", 0, 0, 15000, 0));
-        db.addFood(new Food(R.drawable.phobo, "Phở Bò", 0, 0, 16000, 0));
-        db.addFood(new Food(R.drawable.bunbohue, "Bún Bò Huế", 0, 0, 20000, 0));
-        db.addFood(new Food(R.drawable.xoi, "Xôi", 0, 0, 10000, 0));
-        db.addFood(new Food(R.drawable.mytom, "Mỳ Tôm", 0, 0, 10000, 0));
-        db.addFood(new Food(R.drawable.comga, "Cơm Gà", 1, 0, 16000, 0));
-        db.addFood(new Food(R.drawable.comthitbo, "Cơm Thịt Bò", 1, 0, 20000, 0));
-        db.addFood(new Food(R.drawable.comtamsuong, "Cơm Tấm Sường", 1, 0, 30000, 0));
-        db.addFood(new Food(R.drawable.comtrung, "Cơm Tấm Trứng", 1, 0, 25000, 0));
-        db.addFood(new Food(R.drawable.comga, "Cơm Gà", 2, 0, 16000, 0));
-        db.addFood(new Food(R.drawable.mixaobo, "Mì Xào Bò", 2, 0, 20000, 0));
-        db.addFood(new Food(R.drawable.nuixaobo, "Nui Xào Bò", 2, 0, 20000, 0));
-        db.addFood(new Food(R.drawable.cafe, "Cafe", 3, 0, 10000, 0));
-        db.addFood(new Food(R.drawable.nuocsuoi, "Nước Suối", 3, 0, 10000, 0));
-
-        setRecycleView();
-
 
     }
 
