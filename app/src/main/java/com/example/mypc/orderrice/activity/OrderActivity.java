@@ -43,7 +43,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void outToast() {
-        Toast.makeText(this,getIntent().getExtras().getString(BundleExtra.FOOD_DATA,""), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getIntent().getExtras().getString(BundleExtra.FOOD_DATA, ""), Toast.LENGTH_SHORT).show();
     }
 
     private void initialIntent() {
@@ -59,13 +59,14 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         for (int a = 0; a < mList.size(); a++) {
             Food food = mList.get(a);
             if (mList.get(a).getQuantity() != 0) {
-                mListOrder.add(new Food(food.getIdImage(), food.getName(), food.getQuantity(), food.getValue(), food.getCheckInt()));
+                mListOrder.add(new Food(food.getIdName(), food.getIdImage(), food.getName(), food.getIdBrunchName(), food.getQuantity(), food.getValue(), food.getCheckInt()));
             }
         }
         sumTotal();
         setRecycleView();
     }
-    private void sumTotal(){
+
+    private void sumTotal() {
         int sumTotal = 0;
         for (int a = 0; a < mListOrder.size(); a++) {
             sumTotal += mListOrder.get(a).getQuantity() * mListOrder.get(a).getValue();

@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.example.mypc.orderrice.R;
 import com.example.mypc.orderrice.adapter.ItemsFoodAdapter;
+import com.example.mypc.orderrice.database.DatabaseHandler;
 import com.example.mypc.orderrice.model.Food;
 import com.example.mypc.orderrice.utils.BundleExtra;
 import com.google.gson.Gson;
@@ -30,6 +31,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
         initialView();
+        addDatabaseFood();
         addArrayList();
         buttonClick();
     }
@@ -42,34 +44,30 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
         mList.clear();
         Bundle bundle = getIntent().getExtras();
         intent = bundle.getInt("position");
-        switch (intent) {
-            case 0:
-                mList.add(new Food(R.drawable.banhmi, "Bánh Mì", 0, 15000, 0));
-                mList.add(new Food(R.drawable.phobo, "Phở Bò", 0, 16000, 0));
-                mList.add(new Food(R.drawable.bunbohue, "Bún Bò Huế", 0, 20000, 0));
-                mList.add(new Food(R.drawable.xoi, "Xôi", 0, 10000, 0));
-                mList.add(new Food(R.drawable.mytom, "Mỳ Tôm", 0, 10000, 0));
-                setRecycleView();
-                break;
-            case 1:
-                mList.add(new Food(R.drawable.comga, "Cơm Gà", 0, 16000, 0));
-                mList.add(new Food(R.drawable.comthitbo, "Cơm Thịt Bò", 0, 20000, 0));
-                mList.add(new Food(R.drawable.comtamsuong, "Cơm Tấm Sường", 0, 30000, 0));
-                mList.add(new Food(R.drawable.comtrung, "Cơm Tấm Trứng", 0, 25000, 0));
-                setRecycleView();
-                break;
-            case 2:
-                mList.add(new Food(R.drawable.comga, "Cơm Gà", 0, 16000, 0));
-                mList.add(new Food(R.drawable.mixaobo, "Mì Xào Bò", 0, 20000, 0));
-                mList.add(new Food(R.drawable.nuixaobo, "Nui Xào Bò", 0, 20000, 0));
-                setRecycleView();
-                break;
-            case 3:
-                mList.add(new Food(R.drawable.cafe, "Cafe", 0, 10000, 0));
-                mList.add(new Food(R.drawable.nuocsuoi, "Nước Suối", 0, 10000, 0));
-                setRecycleView();
-                break;
-        }
+
+    }
+
+    private void addDatabaseFood() {
+        DatabaseHandler db = new DatabaseHandler(this);
+
+        db.addFood(new Food(R.drawable.banhmi, "Bánh Mì", 0, 0, 15000, 0));
+        db.addFood(new Food(R.drawable.phobo, "Phở Bò", 0, 0, 16000, 0));
+        db.addFood(new Food(R.drawable.bunbohue, "Bún Bò Huế", 0, 0, 20000, 0));
+        db.addFood(new Food(R.drawable.xoi, "Xôi", 0, 0, 10000, 0));
+        db.addFood(new Food(R.drawable.mytom, "Mỳ Tôm", 0, 0, 10000, 0));
+        db.addFood(new Food(R.drawable.comga, "Cơm Gà", 1, 0, 16000, 0));
+        db.addFood(new Food(R.drawable.comthitbo, "Cơm Thịt Bò", 1, 0, 20000, 0));
+        db.addFood(new Food(R.drawable.comtamsuong, "Cơm Tấm Sường", 1, 0, 30000, 0));
+        db.addFood(new Food(R.drawable.comtrung, "Cơm Tấm Trứng", 1, 0, 25000, 0));
+        db.addFood(new Food(R.drawable.comga, "Cơm Gà", 2, 0, 16000, 0));
+        db.addFood(new Food(R.drawable.mixaobo, "Mì Xào Bò", 2, 0, 20000, 0));
+        db.addFood(new Food(R.drawable.nuixaobo, "Nui Xào Bò", 2, 0, 20000, 0));
+        db.addFood(new Food(R.drawable.cafe, "Cafe", 3, 0, 10000, 0));
+        db.addFood(new Food(R.drawable.nuocsuoi, "Nước Suối", 3, 0, 10000, 0));
+
+        setRecycleView();
+
+
     }
 
     public void setRecycleView() {

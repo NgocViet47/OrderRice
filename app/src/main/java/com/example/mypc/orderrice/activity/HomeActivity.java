@@ -7,6 +7,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.example.mypc.orderrice.R;
 import com.example.mypc.orderrice.adapter.ItemsBrunchAdapter;
+import com.example.mypc.orderrice.database.DatabaseHandler;
 import com.example.mypc.orderrice.model.Brunch;
 
 import java.util.ArrayList;
@@ -31,10 +32,10 @@ public class HomeActivity extends AppCompatActivity {
     private void addArrayList() {
         mList = new ArrayList<>();
         mList.clear();
-        mList.add(new Brunch("Bữa Sáng", R.drawable.breakfast));
-        mList.add(new Brunch("Bữa Trưa", R.drawable.lunch));
-        mList.add(new Brunch("Bữa Tối", R.drawable.dinner));
-        mList.add(new Brunch("Thức uống", R.drawable.drinks));
+        mList.add(new Brunch("Bữa Sáng", 0, R.drawable.breakfast));
+        mList.add(new Brunch("Bữa Trưa", 1, R.drawable.lunch));
+        mList.add(new Brunch("Bữa Tối", 2, R.drawable.dinner));
+        mList.add(new Brunch("Thức uống", 3, R.drawable.drinks));
         setRecycleView();
     }
 
