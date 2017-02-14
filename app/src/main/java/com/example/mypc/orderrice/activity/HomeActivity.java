@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.example.mypc.orderrice.R;
-import com.example.mypc.orderrice.adapter.ItemsListAdapter;
-import com.example.mypc.orderrice.model.ItemsList;
+import com.example.mypc.orderrice.adapter.ItemsBrunchAdapter;
+import com.example.mypc.orderrice.model.Brunch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,8 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private ItemsListAdapter customListAdapter;
-    private List<ItemsList> mList;
+    private ItemsBrunchAdapter customListAdapter;
+    private List<Brunch> mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +31,15 @@ public class HomeActivity extends AppCompatActivity {
     private void addArrayList() {
         mList = new ArrayList<>();
         mList.clear();
-        mList.add(new ItemsList("Bữa Sáng", R.drawable.breakfast));
-        mList.add(new ItemsList("Bữa Trưa", R.drawable.lunch));
-        mList.add(new ItemsList("Bữa Tối", R.drawable.dinner));
-        mList.add(new ItemsList("Thức uống", R.drawable.drinks));
+        mList.add(new Brunch("Bữa Sáng", R.drawable.breakfast));
+        mList.add(new Brunch("Bữa Trưa", R.drawable.lunch));
+        mList.add(new Brunch("Bữa Tối", R.drawable.dinner));
+        mList.add(new Brunch("Thức uống", R.drawable.drinks));
         setRecycleView();
     }
 
     public void setRecycleView() {
-        customListAdapter = new ItemsListAdapter(mList, this);
+        customListAdapter = new ItemsBrunchAdapter(mList, this);
         recyclerView.setAdapter(customListAdapter);
     }
 

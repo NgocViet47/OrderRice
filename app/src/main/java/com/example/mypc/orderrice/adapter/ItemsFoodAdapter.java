@@ -1,7 +1,6 @@
 package com.example.mypc.orderrice.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +14,13 @@ import com.example.mypc.orderrice.R;
 import com.example.mypc.orderrice.model.Food;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by MyPC on 2/10/2017.
  */
 
-public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdapter.ViewHolder> {
+public class ItemsFoodAdapter extends RecyclerView.Adapter<ItemsFoodAdapter.ViewHolder> {
     private List<Food> contactInfoList;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
@@ -31,11 +29,11 @@ public class ItemsListFoodAdapter extends RecyclerView.Adapter<ItemsListFoodAdap
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        itemView = mLayoutInflater.inflate(R.layout.items_list_food, parent, false);
+        itemView = mLayoutInflater.inflate(R.layout.items_food, parent, false);
         return new ViewHolder(itemView);
     }
 
-    public ItemsListFoodAdapter(List<Food> contactInfoList, Context mContext) {
+    public ItemsFoodAdapter(List<Food> contactInfoList, Context mContext) {
         this.contactInfoList = contactInfoList;
         this.mContext = mContext;
         mLayoutInflater = LayoutInflater.from(mContext);

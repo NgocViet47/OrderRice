@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.mypc.orderrice.R;
-import com.example.mypc.orderrice.adapter.ItemsListFoodAdapter;
+import com.example.mypc.orderrice.adapter.ItemsFoodAdapter;
 import com.example.mypc.orderrice.model.Food;
 import com.example.mypc.orderrice.utils.BundleExtra;
 import com.google.gson.Gson;
@@ -19,7 +19,7 @@ import java.util.List;
 
 public class FoodActivity extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView recyclerView;
-    private ItemsListFoodAdapter customListAdapter;
+    private ItemsFoodAdapter customListAdapter;
     private List<Food> mList;
     private int intent;
     private Button buttonBack;
@@ -73,7 +73,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void setRecycleView() {
-        customListAdapter = new ItemsListFoodAdapter(mList, this);
+        customListAdapter = new ItemsFoodAdapter(mList, this);
         recyclerView.setAdapter(customListAdapter);
     }
 

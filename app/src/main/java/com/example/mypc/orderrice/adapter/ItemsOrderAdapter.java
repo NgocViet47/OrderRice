@@ -31,7 +31,7 @@ public class ItemsOrderAdapter extends RecyclerView.Adapter<ItemsOrderAdapter.Vi
 
     @Override
     public ItemsOrderAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        itemView = mLayoutInflater.inflate(R.layout.items_list_food, parent, false);
+        itemView = mLayoutInflater.inflate(R.layout.items_food, parent, false);
         return new ItemsOrderAdapter.ViewHolder(itemView);
     }
 

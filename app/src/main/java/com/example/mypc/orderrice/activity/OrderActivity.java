@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mypc.orderrice.R;
 import com.example.mypc.orderrice.adapter.ItemsOrderAdapter;
@@ -38,6 +39,11 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         initialView();
         addArrayList();
         buttonClick();
+        //outToast();
+    }
+
+    private void outToast() {
+        Toast.makeText(this,getIntent().getExtras().getString(BundleExtra.FOOD_DATA,""), Toast.LENGTH_SHORT).show();
     }
 
     private void initialIntent() {
@@ -101,7 +107,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void buttonBackClick() {
-        Intent intentView = new Intent(OrderActivity.this, FoodActivity.class);
+        Intent intentView = new Intent(this, FoodActivity.class);
         intentView.putExtra("position", intent);
         startActivity(intentView);
     }

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.mypc.orderrice.R;
 import com.example.mypc.orderrice.activity.FoodActivity;
-import com.example.mypc.orderrice.model.ItemsList;
+import com.example.mypc.orderrice.model.Brunch;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -21,18 +21,18 @@ import java.util.List;
  * Created by MyPC on 2/10/2017.
  */
 
-public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.ViewHolder> {
-    private List<ItemsList> contactInfoList;
+public class ItemsBrunchAdapter extends RecyclerView.Adapter<ItemsBrunchAdapter.ViewHolder> {
+    private List<Brunch> contactInfoList;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
     private View itemView;
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        itemView = mLayoutInflater.inflate(R.layout.items_list, parent, false);
+        itemView = mLayoutInflater.inflate(R.layout.items_brunch, parent, false);
         return new ViewHolder(itemView);
     }
 
-    public ItemsListAdapter(List<ItemsList> contactInfoList, Context mContext) {
+    public ItemsBrunchAdapter(List<Brunch> contactInfoList, Context mContext) {
         this.mContext = mContext;
         this.contactInfoList = contactInfoList;
         mLayoutInflater = LayoutInflater.from(mContext);
@@ -40,7 +40,7 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ItemsList itemsList = contactInfoList.get(position);
+        Brunch itemsList = contactInfoList.get(position);
         holder.textViewItemsHome.setText(itemsList.getFood());
         Picasso.with(mContext)
                 .load(itemsList.getIdImageItems())
@@ -71,7 +71,7 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.View
 
         @Override
         public void onClick(View v) {
-            ItemsList itemsList = contactInfoList.get(getAdapterPosition());
+            Brunch itemsList = contactInfoList.get(getAdapterPosition());
             Intent intent = new Intent(mContext, FoodActivity.class);
             intent.putExtra("position",getAdapterPosition());
             mContext.startActivity(intent);

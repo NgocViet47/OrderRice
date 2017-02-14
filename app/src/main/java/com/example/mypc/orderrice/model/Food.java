@@ -52,8 +52,10 @@ public class Food {
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
-
+        if(quantity>15) {
+            this.quantity = 15;
+        }
+        else this.quantity = quantity;
     }
 
     public int getValue() {
