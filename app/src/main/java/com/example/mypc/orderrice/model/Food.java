@@ -23,13 +23,8 @@ public class Food {
         this.checkInt = checkInt;
     }
 
-    public Food(int idImage, String name, int idBrunchName, int quantity, int value, int checkInt) {
-        this.idImage = idImage;
-        this.name = name;
-        this.idBrunchName = idBrunchName;
-        this.quantity = quantity;
-        this.value = value;
-        this.checkInt = checkInt;
+    public Food(int idName) {
+        this.idName = idName;
     }
 
     public int getIdName() {

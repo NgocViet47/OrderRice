@@ -42,6 +42,10 @@ public class HomeActivity extends AppCompatActivity {
         DatabaseHandler db = new DatabaseHandler(this);
 
         //db.deleteBrunch(new Brunch(1));
+        //db.updateBrunch(new Brunch(1));
+        //db.updateFood(new Food(0,R.drawable.banhmi, "Chuối mỹ", 1, 0, 2000, 0));
+
+
         db.deleteAllFood();
         db.deleteAllBrunch();
 
@@ -50,20 +54,20 @@ public class HomeActivity extends AppCompatActivity {
         db.addBrunch(new Brunch("Bữa Tối", 2, R.drawable.dinner));
         db.addBrunch(new Brunch("Thức uống", 3, R.drawable.drinks));
 
-        db.addFood(new Food(R.drawable.banhmi, "Bánh Mì", 0, 0, 15000, 0));
-        db.addFood(new Food(R.drawable.phobo, "Phở Bò", 0, 0, 16000, 0));
-        db.addFood(new Food(R.drawable.bunbohue, "Bún Bò Huế", 0, 0, 20000, 0));
-        db.addFood(new Food(R.drawable.xoi, "Xôi", 0, 0, 10000, 0));
-        db.addFood(new Food(R.drawable.mytom, "Mỳ Tôm", 0, 0, 10000, 0));
-        db.addFood(new Food(R.drawable.comga, "Cơm Gà", 1, 0, 16000, 0));
-        db.addFood(new Food(R.drawable.comthitbo, "Cơm Thịt Bò", 1, 0, 20000, 0));
-        db.addFood(new Food(R.drawable.comtamsuong, "Cơm Tấm Sường", 1, 0, 30000, 0));
-        db.addFood(new Food(R.drawable.comtrung, "Cơm Tấm Trứng", 1, 0, 25000, 0));
-        db.addFood(new Food(R.drawable.comga, "Cơm Gà", 2, 0, 16000, 0));
-        db.addFood(new Food(R.drawable.mixaobo, "Mì Xào Bò", 2, 0, 20000, 0));
-        db.addFood(new Food(R.drawable.nuixaobo, "Nui Xào Bò", 2, 0, 20000, 0));
-        db.addFood(new Food(R.drawable.cafe, "Cafe", 3, 0, 10000, 0));
-        db.addFood(new Food(R.drawable.nuocsuoi, "Nước Suối", 3, 0, 10000, 0));
+        db.addFood(new Food(0,R.drawable.banhmi, "Bánh Mì", 0, 0, 15000, 0));
+        db.addFood(new Food(1,R.drawable.phobo, "Phở Bò", 0, 0, 16000, 0));
+        db.addFood(new Food(2,R.drawable.bunbohue, "Bún Bò Huế", 0, 0, 20000, 0));
+        db.addFood(new Food(3,R.drawable.xoi, "Xôi", 0, 0, 10000, 0));
+        db.addFood(new Food(4,R.drawable.mytom, "Mỳ Tôm", 0, 0, 10000, 0));
+        db.addFood(new Food(5,R.drawable.comga, "Cơm Gà", 1, 0, 16000, 0));
+        db.addFood(new Food(6,R.drawable.comthitbo, "Cơm Thịt Bò", 1, 0, 20000, 0));
+        db.addFood(new Food(7,R.drawable.comtamsuong, "Cơm Tấm Sường", 1, 0, 30000, 0));
+        db.addFood(new Food(8,R.drawable.comtrung, "Cơm Tấm Trứng", 1, 0, 25000, 0));
+        db.addFood(new Food(9,R.drawable.comga, "Cơm Gà", 2, 0, 16000, 0));
+        db.addFood(new Food(10,R.drawable.mixaobo, "Mì Xào Bò", 2, 0, 20000, 0));
+        db.addFood(new Food(11,R.drawable.nuixaobo, "Nui Xào Bò", 2, 0, 20000, 0));
+        db.addFood(new Food(12,R.drawable.cafe, "Cafe", 3, 0, 10000, 0));
+        db.addFood(new Food(13,R.drawable.nuocsuoi, "Nước Suối", 3, 0, 10000, 0));
 
     }
 

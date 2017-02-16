@@ -18,7 +18,7 @@ import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "db_foodg";
+    private static final String DATABASE_NAME = "db_foodh";
     public static final String TABLE_NAME = "food";
     public static final String TABLE_NAMEBRUNCH = "brunch";
     public static final String KEY_ID = "id";
@@ -64,6 +64,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_ID, food.getIdName());
         values.put(KEY_IDIMAGE, food.getIdImage());
         values.put(KEY_NAME, food.getName());
         values.put(KEY_IDBRUNCH, food.getIdBrunchName());
@@ -72,6 +73,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_CHECKINT, food.getCheckInt());
 
         db.insert(TABLE_NAME, null, values);
+        db.close();
+    }
+
+    public void addBrunch(Brunch brunch) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, brunch.getFood());
+        values.put(KEY_ID, brunch.getIdBrunch());
+        values.put(KEY_IDIMAGE, brunch.getIdImageItems());
+        db.insert(TABLE_NAMEBRUNCH, null, values);
         db.close();
     }
 
@@ -89,6 +100,26 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updateBrunch(Brunch brunch) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, "Chuối");
+        db.update(TABLE_NAMEBRUNCH, values, KEY_ID + " = ?",
+                new String[]{String.valueOf(brunch.getIdBrunch())});
+        db.close();
+    }
+
+    public void updateFood(Food food) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, food.getName());
+        values.put(KEY_IDBRUNCH, food.getIdBrunchName());
+        values.put(KEY_VALUE, food.getValue());
+        db.update(TABLE_NAME, values, KEY_ID + " = ?",
+                new String[]{String.valueOf(food.getIdName())});
+        db.close();
+    }
+
     public void deleteAllFood() {
         SQLiteDatabase db = this.getReadableDatabase();
         db.delete(TABLE_NAME, null, null);
@@ -100,21 +131,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.delete(TABLE_NAMEBRUNCH, null, null);
         db.close();
     }
-    public void deleteAllTableForName(String tableName){
+
+    public void deleteAllTableForName(String tableName) {
         SQLiteDatabase db = this.getReadableDatabase();
-        db.delete(tableName,null,null);
-        db.close();
-    }
-
-    public void addBrunch(Brunch brunch) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_NAME, brunch.getFood());
-        values.put(KEY_ID, brunch.getIdBrunch());
-        values.put(KEY_IDIMAGE, brunch.getIdImageItems());
-
-        db.insert(TABLE_NAMEBRUNCH, null, values);
+        db.delete(tableName, null, null);
         db.close();
     }
 
