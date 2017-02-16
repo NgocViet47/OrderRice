@@ -41,6 +41,7 @@ public class HomeActivity extends AppCompatActivity {
     private void addDatabaseBrunch() {
         DatabaseHandler db = new DatabaseHandler(this);
 
+        //db.deleteBrunch(new Brunch(1));
         db.deleteAllFood();
         db.deleteAllBrunch();
 

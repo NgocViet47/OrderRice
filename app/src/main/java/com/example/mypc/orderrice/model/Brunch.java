@@ -26,6 +26,10 @@ public class Brunch {
     public Brunch() {
     }
 
+    public Brunch(int idBrunch) {
+        this.idBrunch = idBrunch;
+    }
+
     public String getFood() {
         return food;
     }

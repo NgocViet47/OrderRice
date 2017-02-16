@@ -44,6 +44,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_VALUE + " INTEGER ,"
                 + KEY_CHECKINT + " INTEGER )";
         db.execSQL(CREATE_CONTACTS_TABLE);
+
         String CREATE_CONTACTS_TABLE_BRUNCH = "CREATE TABLE " + TABLE_NAMEBRUNCH + " ("
                 + KEY_NAME + " TEXT,"
                 + KEY_ID + " INTEGER  PRIMARY KEY AUTOINCREMENT,"
@@ -73,28 +74,38 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
+
     public void deleteFood(Food food) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, KEY_ID + " = ?",
-                new String[] { String.valueOf(food.getIdName()) });
+                new String[]{String.valueOf(food.getIdName())});
         db.close();
     }
-    public void deleteAllFood(){
-        SQLiteDatabase db = this.getReadableDatabase();
-        db.delete(TABLE_NAME,null,null);
-        db.close();
-    }
-    public void deleteAllBrunch(){
-        SQLiteDatabase db = this.getReadableDatabase();
-        db.delete(TABLE_NAMEBRUNCH,null,null);
-        db.close();
-    }
+
     public void deleteBrunch(Brunch brunch) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAMEBRUNCH, KEY_ID + " = ?",
-                new String[] { String.valueOf(brunch.getIdBrunch()) });
+                new String[]{String.valueOf(brunch.getIdBrunch())});
         db.close();
     }
+
+    public void deleteAllFood() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(TABLE_NAME, null, null);
+        db.close();
+    }
+
+    public void deleteAllBrunch() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(TABLE_NAMEBRUNCH, null, null);
+        db.close();
+    }
+    public void deleteAllTableForName(String tableName){
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(tableName,null,null);
+        db.close();
+    }
+
     public void addBrunch(Brunch brunch) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -150,6 +161,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return contactList;
     }
+
     public List<Brunch> getAllBrunch() {
         List<Brunch> contactList = new ArrayList<Brunch>();
         String selectQuery = "SELECT  * FROM " + TABLE_NAMEBRUNCH;
