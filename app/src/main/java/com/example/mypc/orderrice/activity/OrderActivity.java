@@ -109,7 +109,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
     private void buttonBackClick() {
         Intent intentView = new Intent(this, FoodActivity.class);
-        intentView.putExtra("position", intent);
+        intent = getIntent().getExtras().getInt(BundleExtra.BRUNCH_DATA);
+        intentView.putExtra(BundleExtra.BRUNCH_DATA, intent);
         startActivity(intentView);
     }
 

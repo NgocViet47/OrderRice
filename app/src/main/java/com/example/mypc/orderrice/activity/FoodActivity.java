@@ -92,6 +92,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
         String lstFoodJson = new Gson().toJson(mList);
         Intent intentOrder = new Intent(FoodActivity.this, OrderActivity.class);
         intentOrder.putExtra(BundleExtra.FOOD_DATA, lstFoodJson);
+        intentOrder.putExtra(BundleExtra.BRUNCH_DATA,intent);
         startActivity(intentOrder);
     }
 

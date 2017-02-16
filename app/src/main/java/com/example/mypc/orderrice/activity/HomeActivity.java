@@ -39,7 +39,10 @@ public class HomeActivity extends AppCompatActivity {
         setRecycleView();
     }
     private void addDatabaseBrunch() {
-        /*DatabaseHandler db = new DatabaseHandler(this);
+        DatabaseHandler db = new DatabaseHandler(this);
+
+        db.deleteAllFood();
+        db.deleteAllBrunch();
 
         db.addBrunch(new Brunch("Bữa Sáng", 0, R.drawable.breakfast));
         db.addBrunch(new Brunch("Bữa Trưa", 1, R.drawable.lunch));
@@ -59,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
         db.addFood(new Food(R.drawable.mixaobo, "Mì Xào Bò", 2, 0, 20000, 0));
         db.addFood(new Food(R.drawable.nuixaobo, "Nui Xào Bò", 2, 0, 20000, 0));
         db.addFood(new Food(R.drawable.cafe, "Cafe", 3, 0, 10000, 0));
-        db.addFood(new Food(R.drawable.nuocsuoi, "Nước Suối", 3, 0, 10000, 0));*/
+        db.addFood(new Food(R.drawable.nuocsuoi, "Nước Suối", 3, 0, 10000, 0));
 
     }
 
